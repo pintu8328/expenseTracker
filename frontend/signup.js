@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(name,email,password)
   
     axios
-      .post("http://localhost:3000/user/register", {
+      .post("http://localhost:4000/user/register", {
         name: name,
         email: email,
         password: password,
