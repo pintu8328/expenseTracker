@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    console.log(name,email,password)
   
     axios
       .post("http://localhost:4000/user/register", {
