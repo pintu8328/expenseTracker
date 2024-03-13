@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const salt = 10;
 exports.registerUser = (req, res) => {
@@ -24,6 +25,11 @@ exports.registerUser = (req, res) => {
     });
 };
 
+function generateToken(id, name) {
+  const secretKey = "pintu"; 
+  return jwt.sign({ id, name }, secretKey);
+}
+
 exports.loginUser = (req, res) => {
     const { email, password } = req.body;
     console.log(req.body);
@@ -44,6 +50,11 @@ exports.loginUser = (req, res) => {
         return res.status(200).send({
           success: true,
           message: "Login Success",
+          token: generateToken(
+            result.dataValues.id,
+            result.dataValues.name,
+            result.dataValues.premium
+          )
         });
       })
       .catch((err) => res.send(err));
