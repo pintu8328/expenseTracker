@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(result);
         if (result.status == 200) {
           console.log(result.data);
+          localStorage.setItem(
+            "token",
+            JSON.stringify({
+              token: result.data.token,
+            })
+          );
           window.location.href = "../Home/index.html";
         } else  {
           const errorMessage = result.message;

@@ -3,7 +3,7 @@ const Expense = require('../models/expense');
 exports.postExpense = async (req, res, next) => {
     try {
         const { amount, description, category } = req.body;
-        const expense = await Expense.create({
+            const expense = await req.user.createExpense({
             amount,
             description,
             category
