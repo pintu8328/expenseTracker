@@ -10,7 +10,7 @@ const Authenticate = (req, res, next) => {
       message: "Authentication failed",
     });
   }
-  const user = jwt.verify(token, "pintu");
+  const user = jwt.verify(token,"pintu");
   User.findOne({ where: { id: user.id } })
     .then((result) => {
       if (result) {

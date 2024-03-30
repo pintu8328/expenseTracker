@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="./index.css" />
     <title>Expense Tracker</title>
   </head>
   <body>
@@ -14,6 +15,8 @@
       <div class="buy-container row justify-content-between">
         <h2>Expense Tracker</h2>
         <button id="buy-button">By Premium</button>
+        <h3 id="premiumUser">You are premium user</h3>
+        <button id="btnDownload">Download</button>
       </div>
       <form id="expenseForm" class="row">
         <div class="form-group p-2">
@@ -27,13 +30,14 @@
         <div class="form-group p-2">
           <label for="category">Category:</label>
           <select class="form-control" id="category" required>
-            <option value="Furnitures">Furnitures</option>
-            <option value="rent">Rent</option>
-            <option value="entertainment">Entertainment</option>
+            <option value="groceries">Groceries</option>
+            <option value="utilities">Utilities</option>
+            <option value="entertainment">Movie</option>
             <!-- Add more categories as needed -->
           </select>
         </div>
         <div class="form-group p-2">
+          <div></div>
           <button type="submit" class="btn btn-primary">Save Expense</button>
         </div>
       </form>
@@ -41,6 +45,12 @@
       <div id="expenseList" class="mt-4">
         <div class="d-flex flex-row gap-2">
           <h3 class="mb-3">Expense List</h3>
+          <select name="paginationCount" id="paginationCount">
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="50">50</option>
+          </select>
         </div>
 
         <ul class="list-group" id="expenses">
@@ -48,9 +58,12 @@
         </ul>
       </div>
 
-      
+      <div id="paginationDiv" class="m-5 d-flex justify-content-center"></div>
 
-      
+      <div id="premiumList" class="mt-4">
+        <h3>Premium List</h3>
+        <ul class="list-premium"></ul>
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
