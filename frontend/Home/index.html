@@ -7,64 +7,83 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="./index.css" />
-    <title>Expense Tracker</title>
+    <title>Expense buy-container Tracker</title>
   </head>
   <body>
-    <div class="container">
-      <div class="buy-container row justify-content-between">
-        <h2>Expense Tracker</h2>
-        <button id="buy-button">By Premium</button>
-        <h3 id="premiumUser">You are premium user</h3>
-        <button id="btnDownload">Download</button>
-      </div>
+    <!-- <div class="container"> -->
+      <nav class=" buy-container navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Expense Tracker</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button id="buy-button" class="nav-link btn btn-outline-primary">Buy Premium</button>
+              </li>
+              <li class="nav-item">
+                <h3 id="premiumUser" class="nav-link">You are a premium user</h3>
+              </li>
+              <li class="nav-item">
+                <button id="btnDownload" class="nav-link btn btn-outline-primary">Download</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+     
       <form id="expenseForm" class="row">
-        <div class="form-group p-2">
-          <label for="amount">Amount:</label>
-          <input type="number" class="form-control" id="amount" required />
+        <div class="form-group col-md-4">
+            <label for="amount">Amount:</label>
+            <input type="number" class="form-control" id="amount" required />
         </div>
-        <div class="form-group p-2">
-          <label for="description">Description:</label>
-          <input type="text" class="form-control" id="description" required />
+        <div class="form-group col-md-4">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" required />
         </div>
-        <div class="form-group p-2">
-          <label for="category">Category:</label>
-          <select class="form-control" id="category" required>
-            <option value="groceries">Groceries</option>
-            <option value="utilities">Utilities</option>
-            <option value="entertainment">Movie</option>
-            <!-- Add more categories as needed -->
-          </select>
+        <div class="form-group col-md-4">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" required>
+                <option value="groceries">Groceries</option>
+                <option value="utilities">Utilities</option>
+                <option value="entertainment">Movie</option>
+                <!-- Add more categories as needed -->
+            </select>
         </div>
-        <div class="form-group p-2">
-          <div></div>
-          <button type="submit" class="btn btn-primary">Save Expense</button>
+        <div class="form-group col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Save Expense</button>
         </div>
-      </form>
-
+    </form>
+    
+    
       <div id="expenseList" class="mt-4">
-        <div class="d-flex flex-row gap-2">
-          <h3 class="mb-3">Expense List</h3>
-          <select name="paginationCount" id="paginationCount">
-            <option value="2">2</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="50">50</option>
+        
+
+        <div class="d-flex flex-row align-items-center mb-3">
+          <h3 class="mr-3">Expense List</h3>
+          <select name="paginationCount" id="paginationCount" class="form-control form-control-sm" style="width: 80px;">
+              <option value="2">2</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="50">50</option>
           </select>
-        </div>
-
-        <ul class="list-group" id="expenses">
-          <!-- Expense items will be added dynamically here -->
-        </ul>
       </div>
-
+    
+        <div class="list-group" id="expenses">
+            <!-- Expense items will be added dynamically here -->
+        </div>
+    </div>
+    
       <div id="paginationDiv" class="m-5 d-flex justify-content-center"></div>
 
       <div id="premiumList" class="mt-4">
         <h3>Premium List</h3>
         <ul class="list-premium"></ul>
       </div>
-    </div>
+    <!-- </div> -->
+   
+
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

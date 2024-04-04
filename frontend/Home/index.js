@@ -130,6 +130,74 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Display expenses
+  // function displayExpenses(page) {
+  //   expensesList.innerHTML = "";
+  //   const pagenationDiv = document.getElementById("paginationDiv");
+  //   const paginationCount = document.getElementById("paginationCount");
+  //   pagenationDiv.innerHTML = "";
+  //   const count = localStorage.getItem("paginationCount");
+  //   paginationCount.value = count;
+
+  //   console.log(count);
+
+  //   pagenationDiv.innerHTML = "";
+  //   axios
+  //     .get(
+  //       "http://localhost:3000/expense?page=" +
+  //         page +
+  //         "&paginationCount=" +
+  //         count,
+  //       {
+  //         headers: { Authorization: storedData.token },
+  //       }
+  //     )
+  //     .then(function (response) {
+  //       let data = response.data;
+
+  //       if (data.hasPreviousPage) {
+  //         const button = document.createElement("button");
+  //         button.textContent = data.previousPage;
+  //         button.className = "m-1";
+  //         button.onclick = function () {
+  //           displayExpenses(data.previousPage);
+  //         };
+  //         pagenationDiv.appendChild(button);
+  //       }
+  //       const button = document.createElement("button");
+  //       button.textContent = data.currentPage;
+  //       button.className = "m-1 bg-warning";
+  //       pagenationDiv.appendChild(button);
+
+  //       if (data.hasNextPage) {
+  //         const button = document.createElement("button");
+  //         button.textContent = data.nextPage;
+  //         button.className = "m-1";
+  //         button.onclick = function () {
+  //           displayExpenses(data.nextPage);
+  //         };
+  //         pagenationDiv.appendChild(button);
+  //       }
+  //       data.expenses.forEach(function (expense, index) {
+  //         const li = document.createElement("li");
+  //         li.className = "list-group-item";
+  //         const deleteButton = document.createElement("button");
+  //         deleteButton.className = "deleteButton";
+  //         deleteButton.textContent = "Delete";
+  //         li.innerHTML = `<span>${expense.amount} - ${expense.description} (${expense.category})</span>`;
+  //         //         <button type="button" class="btn btn-danger btn-sm float-right">Delete</button>
+  //         //         <button type="button" class="btn btn-primary btn-sm float-right mr-2" onclick="editExpense(${index})">Edit</button>
+  //         //       `;
+  //         li.append(deleteButton);
+  //         deleteButton.addEventListener("click", (e) => {
+  //           deleteExpense(index);
+  //         });
+  //         expensesList.appendChild(li);
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
   function displayExpenses(page) {
     expensesList.innerHTML = "";
     const pagenationDiv = document.getElementById("paginationDiv");
@@ -142,62 +210,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
     pagenationDiv.innerHTML = "";
     axios
-      .get(
-        "http://localhost:3000/expense?page=" +
-          page +
-          "&paginationCount=" +
-          count,
-        {
-          headers: { Authorization: storedData.token },
-        }
-      )
-      .then(function (response) {
-        let data = response.data;
+        .get(
+            "http://localhost:3000/expense?page=" +
+            page +
+            "&paginationCount=" +
+            count,
+            {
+                headers: { Authorization: storedData.token },
+            }
+        )
+        .then(function (response) {
+            let data = response.data;
 
-        if (data.hasPreviousPage) {
-          const button = document.createElement("button");
-          button.textContent = data.previousPage;
-          button.className = "m-1";
-          button.onclick = function () {
-            displayExpenses(data.previousPage);
-          };
-          pagenationDiv.appendChild(button);
-        }
-        const button = document.createElement("button");
-        button.textContent = data.currentPage;
-        button.className = "m-1 bg-warning";
-        pagenationDiv.appendChild(button);
+            if (data.hasPreviousPage) {
+                const button = createBootstrapButton(data.previousPage);
+                pagenationDiv.appendChild(button);
+            }
+            const button = createBootstrapButton(data.currentPage, true);
+            pagenationDiv.appendChild(button);
 
-        if (data.hasNextPage) {
-          const button = document.createElement("button");
-          button.textContent = data.nextPage;
-          button.className = "m-1";
-          button.onclick = function () {
-            displayExpenses(data.nextPage);
-          };
-          pagenationDiv.appendChild(button);
-        }
-        data.expenses.forEach(function (expense, index) {
-          const li = document.createElement("li");
-          li.className = "list-group-item";
-          const deleteButton = document.createElement("button");
-          deleteButton.className = "deleteButton";
-          deleteButton.textContent = "Delete";
-          li.innerHTML = `<span>${expense.amount} - ${expense.description} (${expense.category})</span>`;
-          //         <button type="button" class="btn btn-danger btn-sm float-right">Delete</button>
-          //         <button type="button" class="btn btn-primary btn-sm float-right mr-2" onclick="editExpense(${index})">Edit</button>
-          //       `;
-          li.append(deleteButton);
-          deleteButton.addEventListener("click", (e) => {
-            deleteExpense(index);
-          });
-          expensesList.appendChild(li);
+            if (data.hasNextPage) {
+                const button = createBootstrapButton(data.nextPage);
+                pagenationDiv.appendChild(button);
+            }
+            data.expenses.forEach(function (expense, index) {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "btn btn-danger btn-sm";
+                deleteButton.textContent = "Delete";
+                li.innerHTML = `<span>${expense.amount} - ${expense.description} (${expense.category})</span>`;
+                li.append(deleteButton);
+                deleteButton.addEventListener("click", (e) => {
+                    deleteExpense(index);
+                });
+                expensesList.appendChild(li);
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
         });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+}
+
+function createBootstrapButton(text, isActive = false) {
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.className = isActive ? "btn btn-primary m-1" : "btn btn-secondary m-1";
+    button.onclick = function () {
+        displayExpenses(parseInt(text));
+    };
+    return button;
+}
+
 
   window.deleteExpense = function (index) {
     try {
