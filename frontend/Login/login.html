@@ -1,73 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Login</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-gray-100 rounded-lg py-5">
-    <div
-      class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable"
-    >
-      <div class="flex items-center justify-center w-full lg:p-12">
-        <div class="flex items-center xl:p-10">
-          <form
-            class="flex flex-col w-full h-full pb-6 text-center bg-gray-100 rounded-3xl"
-          >
-            <h3 class="mb-3 text-4xl font-extrabold text-gray-900">Login</h3>
-            <p class="mb-4 text-gray-700">Enter your email and password</p>
-            <div class="error-container hidden text-red-500 text-sm m-3"></div>
-            <div
-              class="success-container hidden text-green-500 text-sm m-3"
-            ></div>
-            <label for="email" class="mb-2 text-sm text-start text-gray-900"
-              >Email*</label
-            >
-            <input
-              id="email"
-              type="email"
-              placeholder="mail@loopple.com"
-              class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-gray-300 mb-7 placeholder:text-gray-700 bg-gray-200 text-gray-900 rounded-2xl"
-            />
-            <label for="password" class="mb-2 text-sm text-start text-gray-900"
-              >Password*</label
-            >
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter a password"
-              class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-gray-300 placeholder:text-gray-700 bg-gray-200 text-gray-900 rounded-2xl"
-            />
-
-            <button
-              type="submit"
-              class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-700 focus:ring-4 bg-purple-600"
-            >
-              Login
-            </button>
-            <button
-              onclick="window.location.href='./forgot.html'"
-              class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-red-700 focus:ring-4 bg-red-600"
-            >
-              Forgot
-            </button>
-            <p class="text-sm leading-relaxed text-gray-900">
-              Not registered yet?
-              <a href="../../SignUp/sign_up.html" class="font-bold text-purple-600"
-                >SignUp.</a
-              >
-            </p>
-          </form>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <form class="p-5 bg-white rounded-lg">
+          <h3 class="mb-3 text-center font-weight-bold">Login</h3>
+          <p class="mb-4 text-center">Enter your email and password</p>
+          <div class="error-container alert alert-danger d-none"></div>
+          <div class="success-container alert alert-success d-none"></div>
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" id="email" class="form-control" placeholder="mail@loopple.com">
+          </div>
+          <div class="form-group">
+            <label for="password">Password*</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter a password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+          <button onclick="window.location.href='./forgotPassword.html'" class="btn btn-danger btn-block mb-3">Forgot</button>
+          <p class="text-center text-muted">Not registered yet? <a href="http://127.0.0.1:5500/frontend/SignUp/sign_up.html" class="font-weight-bold text-primary">SignUp.</a></p>
+        </form>
       </div>
     </div>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
-    <script src="./login.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+  <script src="./login.js"></script>
+</body>
 </html>

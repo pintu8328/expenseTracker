@@ -26,7 +26,7 @@ function register(event) {
         );
 
         // window.location.replace("http://localhost:3000/Home/index.html");
-        window.location.href = "../../Home/index.html";
+        window.location.href = "http://127.0.0.1:5500/frontend/Home/index.html";
       } else {
         const errorMessage = result.message;
         displayError(errorMessage);
