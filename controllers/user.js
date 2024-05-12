@@ -1,7 +1,6 @@
 const User = require("../models/user");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const salt = 10;
 
 exports.registerUser = (req, res) => {
@@ -23,7 +22,6 @@ exports.loginUser = (req, res) => {
   console.log(req.body);
   User.findOne({ where: { email: email } })
     .then((result) => {
-      console.log("result------",result)
       if (result == null) {
         return res.status(404).send({
           message: "User not found",

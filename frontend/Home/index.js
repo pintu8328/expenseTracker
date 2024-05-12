@@ -327,9 +327,10 @@ document.getElementById("btnDownload").onclick = async function (e) {
       headers: { Authorization: storedData.token },
     })
     .then((response) => {
+      console.log("res",response)
       if (response.status == 200) {
         var a = document.createElement("a");
-        a.href = response.data.fileURL;
+        a.href = response.data.loaction;
         a.download = "myexpense.csv";
         a.click();
       } else {

@@ -21,7 +21,7 @@ function register() {
       if (result.status == 200) {
         console.log(result.data);
         localStorage.setItem("token", result.data.token);
-        window.location.href = "http://localhost:3000/Login/login.html";
+        window.location.href = "http://127.0.0.1:5500/frontend/Login/login.html";
       } else {
         const errorMessage = result.message;
         console.log(errorMessage);
